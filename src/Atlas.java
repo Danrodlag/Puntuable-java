@@ -9,7 +9,7 @@ public class Atlas extends Opciones{
         System.out.println("\n\tNueva entrada incorporada");
     }
     public void ensenarAtlas(){
-        if(comprobacion()){
+        if(comprobacion(null)){
             Collection<String> claves = atlas.keySet();
             for(String clave: claves){
                 System.out.printf("\n\tPaís: "+ clave);
@@ -20,34 +20,34 @@ public class Atlas extends Opciones{
     }
 
     public void buscarAtlas(String entrada){
-        if (comprobacion()){
+        if (comprobacion(entrada)){
             Collection<String> claves = atlas.keySet();
             for (String clave: claves){
                 if (clave.equals(entrada)){
                     System.out.println("\t Capital: "+ atlas.get(clave));
-                } else {
-                    System.out.println("\t De este Páis no se encuentra capital");
                 }
             }
         }
     }
 
-    public void modValor(String entrada){
-        if (comprobacion()){
+    public void modValor(String entrada, String nueVal){
+        if (comprobacion(entrada)){
             Collection<String> claves = atlas.keySet();
             for (String clave: claves){
                 if (clave.equals(entrada)){
+                    atlas.put(entrada, nueVal);
                     System.out.println("\t Capital: "+ atlas.get(clave));
-                } else {
-                    System.out.println("\t De este Páis no se encuentra capital");
                 }
             }
         }
     }
 
-    public boolean comprobacion(){
+    public boolean comprobacion(String entrada){
         if (atlas.isEmpty()){
             System.out.println("Primero añade alguna entrada");
+            return false;
+        }else if (atlas.containsKey(entrada)){
+            System.out.println("\t De este País no se encuentra capital");
             return false;
         }else {
             return true;

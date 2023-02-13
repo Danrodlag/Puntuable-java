@@ -16,7 +16,13 @@ public class Opciones extends Main{
                 String pais = teclado.next();
                 atlas.buscarAtlas(pais);
             }
-            case 4 -> System.out.println("he");
+            case 4 -> {
+                System.out.print("Teclea un País: ");
+                String pais = teclado.next();
+                System.out.print("Teclea modificación de capital: ");
+                String nueCap = teclado.next();
+                atlas.modValor(pais, nueCap);
+            }
             case 5 -> System.out.println("he");
             case 6 -> System.out.println("he");
             case 7 -> System.out.println("he");
