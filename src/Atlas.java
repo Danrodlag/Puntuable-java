@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class Atlas extends Opciones{
+public class Atlas{
     public HashMap<String,String> atlas = new HashMap<>();
 
     public void anadirPais(String pais, String capital){
@@ -42,11 +43,20 @@ public class Atlas extends Opciones{
         }
     }
 
+    public void ordNom(){
+        if(comprobacion(null)){
+
+            ArrayList<String> claves = new ArrayList<>(atlas.keySet());
+            Collection.sort();
+
+        }
+    }
+
     public boolean comprobacion(String entrada){
         if (atlas.isEmpty()){
             System.out.println("Primero añade alguna entrada");
             return false;
-        }else if (atlas.containsKey(entrada)){
+        }else if (!atlas.containsKey(entrada) && entrada!= null){
             System.out.println("\t De este País no se encuentra capital");
             return false;
         }else {
