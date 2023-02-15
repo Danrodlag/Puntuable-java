@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 
 public class Atlas{
     public HashMap<String,String> atlas = new HashMap<>();
@@ -15,8 +13,9 @@ public class Atlas{
             for(String clave: claves){
                 System.out.printf("\n\tPaís: "+ clave);
                 System.out.println("\n\tCapital: "+ atlas.get(clave));
-                System.out.println("\n Hay " + atlas.size() + " elementos en el atlas");
+
             }
+            System.out.println("\n Hay " + atlas.size() + " elementos en el atlas");
         }
     }
 
@@ -46,8 +45,16 @@ public class Atlas{
     public void ordNom(){
         if(comprobacion(null)){
 
-            ArrayList<String> claves = new ArrayList<>(atlas.keySet());
-            Collection.sort();
+            String [] claves = new String[atlas.size()];
+            int i = 0;
+            for (String clave : atlas.keySet()){
+                claves[i] = clave;
+                i++;
+            }
+            Arrays.sort(claves);
+            for (String clave : claves){
+                System.out.println(clave);
+            }
 
         }
     }

@@ -23,7 +23,7 @@ public class Opciones extends Main{
                 String nueCap = teclado.next();
                 atlas.modValor(pais, nueCap);
             }
-            case 5 -> System.out.println("he");
+            case 5 -> atlas.ordNom();
             case 6 -> System.out.println("he");
             case 7 -> System.out.println("he");
             case 8 -> System.out.println("he");
