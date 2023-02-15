@@ -5,17 +5,17 @@ public class Atlas implements Comparator<String>{
 
     public void anadirPais(String pais, String capital){
         atlas.put(pais,capital);
-        System.out.println("\n\tNueva entrada incorporada");
+        System.out.println("\n\t\tNueva entrada incorporada");
     }
     public void ensenarAtlas(){
         if(comprobacion(null)){
             Collection<String> claves = atlas.keySet();
             for(String clave: claves){
                 System.out.printf("\n\tPaís: "+ clave);
-                System.out.println("\n\tCapital: "+ atlas.get(clave));
+                System.out.printf("\tCapital: "+ atlas.get(clave));
 
             }
-            System.out.println("\n Hay " + atlas.size() + " elementos en el atlas");
+            System.out.println("\n\n\t\t Hay " + atlas.size() + " elementos en el atlas");
         }
     }
 
@@ -24,7 +24,7 @@ public class Atlas implements Comparator<String>{
             Collection<String> claves = atlas.keySet();
             for (String clave: claves){
                 if (clave.equals(entrada)){
-                    System.out.println("\t Capital: "+ atlas.get(clave));
+                    System.out.println("\n\t\t Capital: "+ atlas.get(clave));
                 }
             }
         }
@@ -36,7 +36,7 @@ public class Atlas implements Comparator<String>{
             for (String clave: claves){
                 if (clave.equals(entrada)){
                     atlas.put(entrada, nueVal);
-                    System.out.println("\t Capital: "+ atlas.get(clave));
+                    System.out.println("\t\t Capital: "+ atlas.get(clave));
                 }
             }
         }
@@ -46,11 +46,12 @@ public class Atlas implements Comparator<String>{
         if(comprobacion(null)){
 
             ArrayList <String> claves = new ArrayList<>(atlas.keySet());
-            int i = 0;
             claves.sort(null);
+            StringBuilder string = new StringBuilder();
             for (String clave: claves){
-                System.out.println(clave);
+                string.append(clave).append("(").append(atlas.get(clave)).append(")\n");
             }
+            System.out.print(string);
 
         }
     }
@@ -64,9 +65,27 @@ public class Atlas implements Comparator<String>{
             Iterator<String> it = atlas.keySet().iterator();
             while (it.hasNext()){
                 String varin = it.next();
-                System.out.println(varin + atlas.get(varin));
+                System.out.print("\n\t\tPaís: " + varin + " Capital: " + atlas.get(varin));
             }
+            System.out.println("\t\t Hay " + atlas.size() + "elementos en el Atlas");
         }
+    }
+
+    public void elimPais(String entrada){
+        if(comprobacion(entrada)){
+            System.out.println("\n\t\t" + entrada + " eliminado del Atlas");
+            atlas.remove(entrada);
+        }
+    }
+
+    public void vaciarAtlas(){
+        if(atlas.isEmpty()){
+            System.out.println("\\n\\tEl atlas ya está vacío");
+        } else {
+            atlas.clear();
+            System.out.println("\\n\\tEliminado el Atlas por completo");
+        }
+
     }
 
     public boolean comprobacion(String entrada){
@@ -74,7 +93,7 @@ public class Atlas implements Comparator<String>{
             System.out.println("Primero añade alguna entrada");
             return false;
         }else if (!atlas.containsKey(entrada) && entrada!= null){
-            System.out.println("\t De este País no se encuentra capital");
+            System.out.println("\t De este país no se encuentra capital");
             return false;
         }else {
             return true;
