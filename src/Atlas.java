@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Atlas{
+public class Atlas implements Comparator<String>{
     public HashMap<String,String> atlas = new HashMap<>();
 
     public void anadirPais(String pais, String capital){
@@ -45,17 +45,27 @@ public class Atlas{
     public void ordNom(){
         if(comprobacion(null)){
 
-            String [] claves = new String[atlas.size()];
+            ArrayList <String> claves = new ArrayList<>(atlas.keySet());
             int i = 0;
-            for (String clave : atlas.keySet()){
-                claves[i] = clave;
-                i++;
-            }
-            Arrays.sort(claves);
-            for (String clave : claves){
+            claves.sort(null);
+            for (String clave: claves){
                 System.out.println(clave);
             }
 
+        }
+    }
+
+    public int compare(String o1, String o2){
+        return o2.compareTo(o1);
+    }
+
+    public void itAtlas(){
+        if (comprobacion(null)){
+            Iterator<String> it = atlas.keySet().iterator();
+            while (it.hasNext()){
+                String varin = it.next();
+                System.out.println(varin + atlas.get(varin));
+            }
         }
     }
 
