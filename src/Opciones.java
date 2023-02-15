@@ -24,7 +24,7 @@ public class Opciones extends Main{
                 atlas.modValor(pais, nueCap);
             }
             case 5 -> atlas.ordNom();
-            case 6 -> System.out.println("he");
+            case 6 -> atlas.itAtlas();
             case 7 -> System.out.println("he");
             case 8 -> System.out.println("he");
             case 9 -> System.out.println("Talue");
