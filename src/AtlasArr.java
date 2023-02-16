@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class AtlasArr {
@@ -47,46 +48,42 @@ public class AtlasArr {
 
     public void ordNom(){
         if(comprobacion(null)){
-
-            ArrayList<String> claves = new ArrayList<>(atlas.keySet());
-            claves.sort(null);
-            StringBuilder string = new StringBuilder();
-            for (String clave: claves){
-                string.append(clave).append("(").append(atlas.get(clave)).append(")\n");
+            lista.sort(this::compare);
+            for (Entrada entrada: lista){
+                System.out.printf("%s(%s)", entrada.pais, entrada.capital);
             }
-            System.out.print(string);
 
         }
     }
 
-    public int compare(String o1, String o2){
-        return o2.compareTo(o1);
+    public int compare(Entrada o1, Entrada o2){
+        return o1.pais.compareTo(o2.pais);
     }
 
     public void itAtlas(){
         if (comprobacion(null)){
-            Iterator<String> it = atlas.keySet().iterator();
+            Iterator<Entrada> it = lista.iterator();
             while (it.hasNext()){
-                String varin = it.next();
-                System.out.print("\n\t\tPaís: " + varin + " Capital: " + atlas.get(varin));
+                Entrada varin = it.next();
+                System.out.printf("\n\t\tPaís: %s  Capital:  %s", varin.pais, varin.capital);
             }
-            System.out.println("\t\t Hay " + atlas.size() + "elementos en el Atlas");
+            System.out.printf("\t\t Hay %s elementos en el Atlas", lista.size());
         }
     }
 
     public void elimPais(String entrada){
         if(comprobacion(entrada)){
             System.out.println("\n\t\t" + entrada + " eliminado del Atlas");
-            atlas.remove(entrada);
+            lista.removeIf(eliminar -> eliminar.pais.equals(entrada));
         }
     }
 
     public void vaciarAtlas(){
-        if(atlas.isEmpty()){
-            System.out.println("\\n\\tEl atlas ya está vacío");
+        if(lista.isEmpty()){
+            System.out.println("\n\t\tEl atlas ya está vacío");
         } else {
-            atlas.clear();
-            System.out.println("\\n\\tEliminado el Atlas por completo");
+            lista.clear();
+            System.out.println("\n\t\tEliminado el Atlas por completo");
         }
 
     }
@@ -95,7 +92,7 @@ public class AtlasArr {
         if (lista.isEmpty()){
             System.out.println("Primero añade alguna entrada");
             return false;
-        }else if (lista.stream().allMatch(n -> n.pais.equals(entrada)) && entrada!= null){
+        }else if (lista.stream().allMatch(n -> n.pais.equals(entrada))){
             System.out.println("\t De este país no se encuentra capital");
             return false;
         }else {
