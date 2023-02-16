@@ -1,30 +1,33 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
-public class Atlas implements Comparator<String>{
-    public HashMap<String,String> atlas = new HashMap<>();
+public class AtlasArr {
+
+    ArrayList <Entrada> lista = new ArrayList<>();
 
     public void anadirPais(String pais, String capital){
-        atlas.put(pais,capital);
+        lista.add(new Entrada(pais, capital));
         System.out.println("\n\t\tNueva entrada incorporada");
     }
     public void ensenarAtlas(){
         if(comprobacion(null)){
-            Collection<String> claves = atlas.keySet();
-            for(String clave: claves){
-                System.out.printf("\n\tPaís: "+ clave);
-                System.out.printf("\tCapital: "+ atlas.get(clave));
+
+            for(Entrada entradas: lista){
+                System.out.printf("\n\tPaís: "+ entradas.pais);
+                System.out.printf("\tCapital: "+ entradas.capital);
 
             }
-            System.out.println("\n\n\t\t Hay " + atlas.size() + " elementos en el atlas");
+            System.out.println("\n\n\t\t Hay " + lista.size() + " elementos en el atlas");
         }
     }
 
     public void buscarAtlas(String entrada){
         if (comprobacion(entrada)){
-            Collection<String> claves = atlas.keySet();
-            for (String clave: claves){
-                if (clave.equals(entrada)){
-                    System.out.println("\n\t\t Capital: "+ atlas.get(clave));
+
+            for (Entrada entradas: lista){
+                if (entradas.pais.equals(entrada)){
+                    System.out.println("\n\t\t Capital: "+ entradas.capital);
                 }
             }
         }
@@ -32,11 +35,11 @@ public class Atlas implements Comparator<String>{
 
     public void modValor(String entrada, String nueVal){
         if (comprobacion(entrada)){
-            Collection<String> claves = atlas.keySet();
-            for (String clave: claves){
-                if (clave.equals(entrada)){
-                    atlas.put(entrada, nueVal);
-                    System.out.println("\t\t Capital: "+ atlas.get(clave));
+
+            for (Entrada entradas: lista){
+                if (entradas.pais.equals(entrada)){
+                    entradas.capital = nueVal;
+                    System.out.println("\t\t Capital: "+ entradas.capital);
                 }
             }
         }
@@ -45,7 +48,7 @@ public class Atlas implements Comparator<String>{
     public void ordNom(){
         if(comprobacion(null)){
 
-            ArrayList <String> claves = new ArrayList<>(atlas.keySet());
+            ArrayList<String> claves = new ArrayList<>(atlas.keySet());
             claves.sort(null);
             StringBuilder string = new StringBuilder();
             for (String clave: claves){
@@ -89,15 +92,14 @@ public class Atlas implements Comparator<String>{
     }
 
     public boolean comprobacion(String entrada){
-        if (atlas.isEmpty()){
+        if (lista.isEmpty()){
             System.out.println("Primero añade alguna entrada");
             return false;
-        }else if (!atlas.containsKey(entrada) && entrada!= null){
+        }else if (lista.stream().allMatch(n -> n.pais.equals(entrada)) && entrada!= null){
             System.out.println("\t De este país no se encuentra capital");
             return false;
         }else {
             return true;
         }
     }
-
 }

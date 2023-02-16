@@ -1,5 +1,5 @@
 public class Opciones extends Main{
-    Atlas atlas = new Atlas();
+    AtlasH atlas = new AtlasH();
     protected void elegirOpcion(int entrada){
 
         switch (entrada) {
