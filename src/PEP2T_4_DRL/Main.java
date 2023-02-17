@@ -18,10 +18,10 @@ public class Main {
         while (entrada != 9){
             System.out.print("""
                     
-                    \t1. Añadir una entrada al atlas    2. Mostrar el contenido actual del atlas
-                    \t3. Buscar una entrada del atlas   4. Modificar una entrada del atlas
-                    \t5. Ordenar por nombre de país     6. Mostrar el contenido del atlas con iterador
-                    \t7. Eliminar una entrada del atlas 8. Eliminar el contenido completo del atlas
+                    \t1. Añadir una entrada al atlas      2. Mostrar el contenido actual del atlas
+                    \t3. Buscar una entrada del atlas     4. Modificar una entrada del atlas
+                    \t5. Ordenar por nombre de país       6. Mostrar el contenido del atlas con iterador
+                    \t7. Eliminar una entrada del atlas   8. Eliminar el contenido completo del atlas
                     \t9. Salir
                     
                     \tTeclea una de las opciones:\s""");
@@ -43,7 +43,7 @@ public class Main {
                 }
 
             }catch (InputMismatchException n){
-                System.out.println("Introduzca un número entero.");
+                System.out.println("\n\tDebes teclear un número entero");
             }
 
         }
